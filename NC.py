@@ -1136,20 +1136,23 @@ class XXX(NC):
 
 
     @staticmethod
-    def emxstor(foo):
-        global emxstorage, emxnumber
+    def eestor(foo):
+        global eestorage, eenumber
         current = str(foo)
-        emxstorage = []
-        pattern = r'emx'
-        i = -1
-        while current.find(pattern) != -1:
-            i += 1
-            emxstorage.append(0)
-            emxstorage[i] = current.find(pattern)
-            current = current[current.find(pattern)+4:]
-            if i!= 0:
-                emxstorage[i] += emxstorage[i-1]+4
-        return  emxstorage
+        eestorage = []
+        eenumber = []
+        regex = re.compile('[e][e]\d{1}')
+        pattern = regex.findall(current)
+        for i in range(len(pattern)):
+            pt = pattern[i]
+            eestorage.append(0)
+            eenumber.append(0)
+            eestorage[i] = current.find(pt)
+            eenumber[i] = int(current[current.find(pt)+2:current.find(pt)+3])
+            current = current[current.find(pt)+4:]
+            if i != 0:
+                eestorage[i] += eestorage[i-1]+4
+        return eestorage, eenumber
 
 
     @staticmethod
@@ -1213,58 +1216,75 @@ class XXX(NC):
 
 
     @staticmethod
+    def xstor(foo):
+        global xstorage, xnumber
+        current = str(foo)
+        xstorage = []
+        xnumber = []
+        regex = re.compile('[x]\d{2}')
+        pattern = regex.findall(current)
+        for i in range(len(pattern)):
+            pt = pattern[i]
+            xstorage.append(0)
+            xnumber.append(0)
+            xstorage[i] = current.find(pt)
+            xnumber[i] = int(current[current.find(pt)+1:current.find(pt)+3])
+            current = current[current.find(pt)+4:]
+            if i != 0:
+                xstorage[i] += xstorage[i-1]+4
+        return xstorage, xnumber
+
+
+    @staticmethod
     def is_normalxx0(foo):
         flag = True
-        xstorage = XXX.bstor(foo)[0]
-        pstorage = XXX.astor(foo)[0]
-        xnumber = XXX.bstor(foo)[1]
-        pnumber = XXX.astor(foo)[1]
+        bstorage = XXX.bstor(foo)[0]
+        astorage = XXX.astor(foo)[0]
         pustorage = XXX.edxstor(foo)
-        emxstorage = XXX.emxstor(foo)
-        uzstorage = XXX.xx0stor(foo)
+        eestorage = XXX.eestor(foo)[0]
+        uzstorage = XXX.xx0stor(foo)[0]
+        xstorage = XXX.xstor(foo)[0]
+        # template x11*xx0*b11*a11*edx*ee1
+        for x in xstorage:
+            for a in astorage:
+                if a<x: flag = False
+            for xx0 in uzstorage:
+                if xx0<x: flag = False
+            for edx in pustorage:
+                if edx<x: flag = False
+            for ee in eestorage:
+                if ee<x: flag = False
+            for b in bstorage:
+                if b<x: flag = False
 
-        for i in range(len(xstorage)):
-            for j in range(len(pstorage)):
-                if pstorage[j] < xstorage[i]:
-                    flag = False
-        for i in range(len(uzstorage[0])):
-            for j in range(len(pustorage)):
-                if pustorage[j] < uzstorage[0][i]:
-                    flag = False
+        for xx0 in uzstorage:
+            for b in bstorage:
+                if b<xx0: flag = False
+            for a in astorage:
+                if a<xx0: flag = False
+            for edx in edxstorage:
+                if edx<xx0: flag = False
+            for ee in eestorage:
+                if ee<xx0: flag = False
 
-        for i in range(len(uzstorage[0])):
-            for j in range(len(emxstorage)):
-                if emxstorage[j] < uzstorage[0][i]:
-                    flag = False
+        for b in bstorage:
+            for a in astorage:
+                if a<b: flag = False
+            for edx in edxstorage:
+                if edx<b: flag = False
+            for ee in eestorage:
+                if ee<b: flag = False
 
+        for a in astorage:
+            for edx in edxstorage:
+                if edx<a: flag = False
+            for ee in eestorage:
+                if ee<a: flag = False
 
-        for i in range(len(uzstorage[0])):
-            for j in range(len(xstorage)):
-                if xstorage[j] < uzstorage[0][i]:
-                    flag = False
-        for i in range(len(uzstorage[0])):
-            for j in range(len(pstorage)):
-                if pstorage[j] < uzstorage[0][i]:
-                    flag = False
-        for i in range(len(pustorage)):
-            for j in range(len(xstorage)):
-                if xstorage[j] > pustorage[i]:
-                    flag = False
+        for edx in edxstorage:
+            for ee in eestorage:
+                if ee<edx: flag = False
 
-        for i in range(len(emxstorage)):
-            for j in range(len(xstorage)):
-                if xstorage[j] > emxstorage[i]:
-                    flag = False
-
-        for i in range(len(pustorage)):
-            for j in range(len(pstorage)):
-                if pstorage[j] < pustorage[i]:
-                    flag = False
-
-        for i in range(len(emxstorage)):
-            for j in range(len(pstorage)):
-                if pstorage[j] < emxstorage[i]:
-                    flag = False
 
         return flag
 
@@ -1275,8 +1295,7 @@ class XXX(NC):
         pstorage = XXX.astor(foo)[0]
         xnumber = XXX.bstor(foo)[1]
         pnumber = XXX.astor(foo)[1]
-        pustorage = XXX.edxstor(foo)
-        uzstorage = XXX.xx0stor(foo)
+        uzstorage = XXX.xx0stor(foo)[0]
         uznumber = XXX.xx0stor(foo)[1]
         if uznumber != sorted(uznumber):
             return False
@@ -1297,21 +1316,25 @@ class XXX(NC):
                 result.append(item)
         current = result[index]
         while not XXX.is_normalxx0(current):
+            print(result)
             xx0stor = XXX.xx0stor(current)[0]
             ppustor = XXX.edxstor(current)
             xx0number = XXX.xx0stor(current)[1]
-            emxstor = XXX.emxstor(current)
+            eestor = XXX.eestor(current)[0]
+            eenumber = XXX.eestor(current)[1]
+            xstor = XXX.xstor(current)[0]
+            xnumber = XXX.xstor(current)[1]
             sspar = ''
             signstorage = ''
 
-            for i in range(len(xx0stor)):
-                for j in range(len(emxstor)):
-                    if current.rstrip('-') == 'emx'+'*'+'xx'+ str(xx0number[i]):
+            for i in range(len(xstor)):
+                for j in range(len(eestor)):
+                    if current.rstrip('-') == 'ee'+str(eenumber[j])+'*'+'x'+ str(xnumber[i]):
                         if current.find('-') != -1:
                             signstorage = current[current.find('-'):]
                             current = current.rstrip('-')
-                        sspar = 'xx' + str(xx0number[i]-1)
-                        temp = current.replace('emx' + '*'+'xx'+ str(xx0number[i]), 'xx'+str(xx0number[i]) +'*'+'emx')
+                        sspar = 'edx'+ '*' + 'ee'+str(eenumber[j])+'*'+'ee'+str(eenumber[j])
+                        temp = current.replace('ee'+str(eenumber[j])+'*'+'x'+ str(xnumber[i]), 'x'+str(xnumber[i]) +'*'+'ee'+str(eenumber[j]),1)
                         current += signstorage
                         temp += signstorage
                         sspar += signstorage
@@ -1320,14 +1343,18 @@ class XXX(NC):
                         current = temp
                         result.append(sspar)
                     else:
-                        if j != len(emxstor)-1:
+                        if j != len(eestor)-1:
                             # if current.find('-') != -1:
                             #     signstorage = current[current.find('-'):]
                             #     current = current.rstrip('-')
-                            if emxstor[j]+4 == xx0stor[i]  and emxstor[j+1] > xx0stor[i]:
-                                sspar = current.replace('emx'+'*'+'xx'+str(xx0number[i]), 'xx' + str(xx0number[i]-1) ,1)
+                            if eestor[j]+4 == xstor[i]  and eestor[j+1] > xstor[i]:
 
-                                temp = current.replace('emx'+'*'+'xx'+str(xx0number[i]), 'xx'+str(xx0number[i])+'*'+'emx')
+                                sspar = current[eestor[j]:eestor[j]+7].replace('ee'+str(eenumber[j])+'*'+'x'+str(xnumber[i]), 'edx'+ '*' + 'ee'+str(eenumber[j])+'*'+'ee'+str(eenumber[j]) ,1)
+                                sspar = current[:eestor[j]] + sspar + current[eestor[j]+7:]
+
+                                temp = current[eestor[j]:eestor[j]+7].replace('ee'+str(eenumber[j])+'*'+'x'+str(xnumber[i]), 'x'+str(xnumber[i])+'*'+'ee'+str(eenumber[j]),1)
+                                temp = current[:eestor[j]] + temp + current[eestor[j]+7:]
+
                                 result.remove(current)
                                 result.insert(index,temp)
                                 sspar = sspar.replace('**', '*')
@@ -1340,9 +1367,14 @@ class XXX(NC):
                                 current = temp
 
                         else:
-                            if emxstor[j]+4 == xx0stor[i]:
-                                sspar = current.replace('emx'+'*'+'xx'+str(xx0number[i]), 'xx' + str(xx0number[i]-1),1)
-                                temp = current.replace('emx'+'*'+'xx'+str(xx0number[i]), 'xx'+str(xx0number[i])+'*'+'emx')
+                            if eestor[j]+4 == xstor[i]:
+
+                                sspar = current[eestor[j]:eestor[j]+7].replace('ee'+str(eenumber[j])+'*'+'x'+str(xnumber[i]), 'edx'+ '*' + 'ee'+str(eenumber[j])+'*'+'ee'+str(eenumber[j]) ,1)
+                                sspar = current[:eestor[j]] + sspar + current[eestor[j]+7:]
+
+                                temp = current[eestor[j]:eestor[j]+7].replace('ee'+str(eenumber[j])+'*'+'x'+str(xnumber[i]), 'x'+str(xnumber[i])+'*'+'ee'+str(eenumber[j]),1)
+                                temp = current[:eestor[j]] + temp + current[eestor[j]+7:]
+
                                 result.remove(current)
                                 result.insert(index,temp)
                                 sspar = sspar.replace('**', '*')
@@ -1353,6 +1385,7 @@ class XXX(NC):
                                 if sspar != '':
                                     result.append(sspar)
                                 current = temp
+
 
             for i in range(len(xx0stor)):
                 for j in range(len(ppustor)):
@@ -1375,9 +1408,13 @@ class XXX(NC):
                             #     signstorage = current[current.find('-'):]
                             #     current = current.rstrip('-')
                             if ppustor[j]+4 == xx0stor[i]  and ppustor[j+1] > xx0stor[i]:
-                                sspar = current.replace('edx'+'*'+'xx'+str(xx0number[i]), 'xx' + str(xx0number[i]+1) ,1)
 
-                                temp = current.replace('edx'+'*'+'xx'+str(xx0number[i]), 'xx'+str(xx0number[i])+'*'+'edx')
+                                sspar = current[ppustor[j]:ppustor[j]+7].replace('edx'+'*'+'xx'+str(xx0number[i]), 'xx' + str(xx0number[i]+1) ,1)
+                                sspar = current[:ppustor[j]] + sspar + current[ppustor[j]+7:]
+
+                                temp = current[ppustor[j]:ppustor[j]+7].replace('edx'+'*'+'xx'+str(xx0number[i]), 'xx'+str(xx0number[i])+'*'+'edx',1)
+                                temp = current[:ppustor[j]] + temp + current[ppustor[j]+7:]
+
                                 result.remove(current)
                                 result.insert(index,temp)
                                 sspar = sspar.replace('**', '*')
@@ -1391,8 +1428,11 @@ class XXX(NC):
 
                         else:
                             if ppustor[j]+4 == xx0stor[i]:
-                                sspar = current.replace('edx'+'*'+'xx'+str(xx0number[i]), 'xx' + str(xx0number[i]+1),1)
-                                temp = current.replace('edx'+'*'+'xx'+str(xx0number[i]), 'xx'+str(xx0number[i])+'*'+'edx')
+                                sspar = current[ppustor[j]:ppustor[j]+7].replace('edx'+'*'+'xx'+str(xx0number[i]), 'xx' + str(xx0number[i]+1) ,1)
+                                sspar = current[:ppustor[j]] + sspar + current[ppustor[j]+7:]
+
+                                temp = current[ppustor[j]:ppustor[j]+7].replace('edx'+'*'+'xx'+str(xx0number[i]), 'xx'+str(xx0number[i])+'*'+'edx',1)
+                                temp = current[:ppustor[j]] + temp + current[ppustor[j]+7:]
                                 result.remove(current)
                                 result.insert(index,temp)
                                 sspar = sspar.replace('**', '*')
@@ -1435,7 +1475,9 @@ class XXX(NC):
                                     current = current.rstrip('-')
                                 if aastor[1][jj] != bbstor[1][ii]:
 
-                                    temp = current.replace('a'+str(aastor[1][jj])+'*'+'b'+str(bbstor[1][ii]), 'b'+str(bbstor[1][ii])+'*'+'a'+str(aastor[1][jj]))
+                                    temp = current[aastor[0][jj]:aastor[0][jj]+7].replace('a'+str(aastor[1][jj])+'*'+'b'+str(bbstor[1][ii]), 'b'+str(bbstor[1][ii])+'*'+'a'+str(aastor[1][jj]),1)
+                                    temp = current[:aastor[0][jj]] + temp + current[aastor[0][jj]+7:]
+
                                     current += signstorage
                                     temp += signstorage
                                     result.remove(current)
@@ -1446,7 +1488,7 @@ class XXX(NC):
                                     sspar = current[aastor[0][jj]:aastor[0][jj]+7].replace('a'+str(aastor[1][jj])+'*'+'b'+str(bbstor[1][ii]), '',1)
                                     sspar = current[:aastor[0][jj]] + sspar + current[aastor[0][jj]+7:]
 
-                                    temp = current[aastor[0][jj]:aastor[0][jj]+7].replace('a'+str(aastor[1][jj])+'*'+'b'+str(bbstor[1][ii]), 'b'+str(bbstor[1][ii])+'*'+'a'+str(aastor[1][jj]))
+                                    temp = current[aastor[0][jj]:aastor[0][jj]+7].replace('a'+str(aastor[1][jj])+'*'+'b'+str(bbstor[1][ii]), 'b'+str(bbstor[1][ii])+'*'+'a'+str(aastor[1][jj]),1)
                                     temp = current[:aastor[0][jj]] + temp + current[aastor[0][jj]+7:]
 
 
@@ -1472,19 +1514,23 @@ class XXX(NC):
                                     signstorage = current[current.find('-'):]
                                     current = current.rstrip('-')
                                 if aastor[1][jj] != bbstor[1][ii]:
-                                    temp = current.replace('a'+str(aastor[1][jj])+'*'+'b'+str(bbstor[1][ii]), 'b'+str(bbstor[1][ii])+'*'+'a'+str(aastor[1][jj]))
+
+                                    temp = current[aastor[0][jj]:aastor[0][jj]+7].replace('a'+str(aastor[1][jj])+'*'+'b'+str(bbstor[1][ii]), 'b'+str(bbstor[1][ii])+'*'+'a'+str(aastor[1][jj]))
+                                    temp = current[:aastor[0][jj]] + temp + current[aastor[0][jj]+7:]
 
                                     current += signstorage
                                     temp += signstorage
-
 
                                     result.remove(current)
                                     result.insert(index,temp)
                                     current = temp
                                 else:
 
-                                    sspar = current.replace('a'+str(aastor[1][jj])+'*'+'b'+str(bbstor[1][ii]), '',1)
+                                    sspar = current[aastor[0][jj]:aastor[0][jj]+7].replace('a'+str(aastor[1][jj])+'*'+'b'+str(bbstor[1][ii]), '',1)
+                                    sspar = current[:aastor[0][jj]] + sspar + current[aastor[0][jj]+7:]
+
                                     temp = current.replace('a'+str(aastor[1][jj])+'*'+'b'+str(bbstor[1][ii]), 'b'+str(bbstor[1][ii])+'*'+'a'+str(aastor[1][jj]))
+                                    temp = current[:aastor[0][jj]] + temp + current[aastor[0][jj]+7:]
                                     current += signstorage
                                     temp += signstorage
 
@@ -1511,8 +1557,8 @@ class XXX(NC):
 
             for j in range(len(ppustor)):
                 for ii in range(len(aastor[0])):
-                    if ppustor[j] == aastor[0][ii]+4:
-                        temp = current.replace( 'a'+str(aastor[1][ii])+'*'+'edx','edx'+'*'+'a'+str(aastor[1][ii]))
+                    if ppustor[j]+4 == aastor[0][ii]:
+                        temp = current.replace( 'edx'+'*'+'a'+str(aastor[1][ii]),'a'+str(aastor[1][ii])+'*'+'edx')
                         result.remove(current)
                         result.insert(index,temp)
                         current = temp
@@ -1643,7 +1689,7 @@ class XXX(NC):
 
 
 if __name__ == '__main__' :
-    test = XXX(3)
-    print(text.xstor('edx*x11*xx0'))
+    test = XXX(2,2)
+    print(test.FNFab('ee1*x11'))
 
 
