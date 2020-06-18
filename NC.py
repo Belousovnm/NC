@@ -501,6 +501,7 @@ class NC:
         new_minus = sorted(minus)
         return np.array_equal(new_plus, new_minus)
 
+
     @staticmethod
     def pustor(foo):
         global pustorage, punumber
@@ -616,6 +617,7 @@ class NC:
             return False
         return is_normaluz(foo)
 
+
     @staticmethod
     def symsplit2(foo):
         ssym = []
@@ -629,6 +631,7 @@ class NC:
             sym[i] = sym[i].replace(' ', '')
             ssym.append(sym[i])
         return ssym
+
 
     @staticmethod
     def FNFuz(foo, index = 0):
@@ -918,6 +921,194 @@ class NC:
         return result
 
 
+class xcls():
+    def __init__(self):
+        self.name = 'x'
+
+    @staticmethod
+    def stor(foo):
+        global xstorage, xnumber
+        current = str(foo)
+        xstorage = []
+        xnumber = []
+        regex = re.compile('[x]\d{2}')
+        pattern = regex.findall(current)
+        for i in range(len(pattern)):
+            pt = pattern[i]
+            xstorage.append(0)
+            xnumber.append(0)
+            xstorage[i] = current.find(pt)
+            xnumber[i] = int(current[current.find(pt)+1:current.find(pt)+3])
+            current = current[current.find(pt)+4:]
+            if i != 0:
+                xstorage[i] += xstorage[i-1]+4
+        return xstorage, xnumber
+
+
+class xx0cls():
+    def __init__(self):
+        self.name = 'xx'
+
+    @staticmethod
+    def stor(foo):
+        global xx0storage, xx0number
+        current = str(foo)
+        xx0storage = []
+        xx0number = []
+        regex = re.compile('[x][x]\d{1}')
+        pattern = regex.findall(current)
+        for i in range(len(pattern)):
+            pt = pattern[i]
+            xx0storage.append(0)
+            xx0number.append(0)
+            xx0storage[i] = current.find(pt)
+            xx0number[i] = int(current[current.find(pt)+2:current.find(pt)+3])
+            current = current[current.find(pt)+4:]
+            if i != 0:
+                xx0storage[i] += xx0storage[i-1]+4
+        return xx0storage, xx0number
+
+
+class bcls():
+    def __init__(self):
+        self.name = 'b'
+
+    @staticmethod
+    def stor(foo):
+        global bstorage, bnumber
+        current = str(foo)
+        bstorage = []
+        bnumber = []
+        regex = re.compile('[b]\d{2}')
+        pattern = regex.findall(current)
+        for i in range(len(pattern)):
+            pt = pattern[i]
+            bstorage.append(0)
+            bnumber.append(0)
+            bstorage[i] = current.find(pt)
+            bnumber[i] = int(current[current.find(pt)+1:current.find(pt)+3])
+            current = current[current.find(pt)+4:]
+            if i != 0:
+                bstorage[i] += bstorage[i-1]+4
+        return bstorage, bnumber
+
+
+class acls():
+    def __init__(self):
+        self.name = 'a'
+
+    @staticmethod
+    def stor(foo):
+        global astorage, anumber
+        current = str(foo)
+        astorage = []
+        anumber = []
+        regex = re.compile('[a]\d{2}')
+        pattern = regex.findall(current)
+        for i in range(len(pattern)):
+            pt = pattern[i]
+            astorage.append(0)
+            anumber.append(0)
+            astorage[i] = current.find(pt)
+            anumber[i] = int(current[current.find(pt)+1:current.find(pt)+3])
+            current = current[current.find(pt)+4:]
+            if i != 0:
+                astorage[i] += astorage[i-1]+4
+        return astorage, anumber
+
+
+class edxcls():
+    def __init__(self):
+        self.name = 'edx'
+
+    @staticmethod
+    def stor(foo):
+        global edxstorage, edxnumber
+        current = str(foo)
+        edxstorage = []
+        pattern = r'edx'
+        i = -1
+        while current.find(pattern) != -1:
+            i += 1
+            edxstorage.append(0)
+            edxstorage[i] = current.find(pattern)
+            current = current[current.find(pattern)+4:]
+            if i!= 0:
+                edxstorage[i] += edxstorage[i-1]+4
+        return  edxstorage
+
+
+class eecls():
+    def __init__(self):
+        self.name = 'ee'
+
+    @staticmethod
+    def stor(foo):
+        global eestorage, eenumber
+        current = str(foo)
+        eestorage = []
+        eenumber = []
+        regex = re.compile('[e][e]\d{1}')
+        pattern = regex.findall(current)
+        for i in range(len(pattern)):
+            pt = pattern[i]
+            eestorage.append(0)
+            eenumber.append(0)
+            eestorage[i] = current.find(pt)
+            eenumber[i] = int(current[current.find(pt)+2:current.find(pt)+3])
+            current = current[current.find(pt)+4:]
+            if i != 0:
+                eestorage[i] += eestorage[i-1]+4
+        return eestorage, eenumber
+
+
+class wcls():
+    def __init__(self):
+        self.name = 'w'
+
+    @staticmethod
+    def stor(foo):
+        global wstorage, wnumber
+        current = str(foo)
+        wstorage = []
+        wnumber = []
+        regex = re.compile('[w]\d{2}')
+        pattern = regex.findall(current)
+        for i in range(len(pattern)):
+            pt = pattern[i]
+            wstorage.append(0)
+            wnumber.append(0)
+            wstorage[i] = current.find(pt)
+            wnumber[i] = int(current[current.find(pt)+1:current.find(pt)+3])
+            current = current[current.find(pt)+4:]
+            if i != 0:
+                wstorage[i] += wstorage[i-1]+4
+        return wstorage, wnumber
+
+class qcls():
+    def __init__(self):
+        self.name = 'q'
+
+    @staticmethod
+    def stor(foo):
+        # global wstorage, wnumber
+        current = str(foo)
+        wstorage = []
+        wnumber = []
+        regex = re.compile('[q]\d{2}')
+        pattern = regex.findall(current)
+        for i in range(len(pattern)):
+            pt = pattern[i]
+            wstorage.append(0)
+            wnumber.append(0)
+            wstorage[i] = current.find(pt)
+            wnumber[i] = int(current[current.find(pt)+1:current.find(pt)+3])
+            current = current[current.find(pt)+4:]
+            if i != 0:
+                wstorage[i] += wstorage[i-1]+4
+        return wstorage, wnumber
+
+
 class XXX(NC):
     def __init__(self, N, K):
         self.N = N
@@ -925,7 +1116,6 @@ class XXX(NC):
         w = Symbol('w', commutative = False)
         edx = Symbol('edx', commutative = False)
         xx0 = Symbol('xx0', commutative = False)
-        edx = Symbol('edx', commutative = False)
         M = [[0 for j in range(self.N)] for i in range(self.N)]
         for i in range(self.N):
             for j in range(self.N):
@@ -935,14 +1125,14 @@ class XXX(NC):
 
         Q = [0 for i in range(self.K)]
         for i in range(self.K):
-            Q[i] = Symbol('q'+ str(i+1), commutative = False)
+            Q[i] = Symbol('q'+ str(i+1)+ str(i+1), commutative = False)
         Q = Matrix(Q)
 
         X = [0 for j in range(N)]
         for i in range(N):
-            X[i] = Symbol('x'+str(i+1), commutative=False)
+            X[i] = Symbol('x'+str(i+1)+ str(i+1), commutative=False)
         XX = X
-        X = Matrix(X)
+        # X = Matrix(X)
 
         A = [[0 for j in range(self.K)] for i in range(self.N)]
         for i in range(self.N):
@@ -959,6 +1149,7 @@ class XXX(NC):
         # B = Matrix(B)
 
         self.A = A
+        self.M = M
         self.B = B
         self.M = M
         self.X = X
@@ -981,16 +1172,16 @@ class XXX(NC):
         return Matrix(Matr)
 
 
-    def LtG(self,w):
+    def LtG(self):
         L = [[0 for _ in range(self.N)] for _ in range(self.N)]
         for j in range(self.N):
-            L[j][j] += self.X[j]
+            # L[j][j] += self.X[j]
             for i in range(self.N):
                 for a in range(self.K):
                     if i<j:
                         L[i][j] += self.A[i][a]*self.B[j][a]
-                    L[i][j] += Symbol('w'+str(a+1), commutative = False)*self.A[i][a]*self.B[j][a]*Symbol( 'ww'+str(a+1), commutative = False)
-        return Matrix(L)
+                    L[i][j] += Symbol('q'+str(a+1)+str(a+1), commutative = False)*self.A[i][a]*self.B[j][a]*Symbol( 'ee'+str(a+1), commutative = False)
+        return L
 
 
     def Lrat_true(self, foo, i):
@@ -1098,153 +1289,71 @@ class XXX(NC):
         return self.cdet(eye(self.N) - self.edx*self.TXXX())
 
 
-    @staticmethod
-    def xstor(foo):
-        global xstorage, xnumber
-        current = str(foo)
-        xstorage = []
-        xnumber = []
-        regex = re.compile('[x]\d{2}')
-        pattern = regex.findall(current)
-        for i in range(len(pattern)):
-            pt = pattern[i]
-            xstorage.append(0)
-            xnumber.append(0)
-            xstorage[i] = current.find(pt)
-            xnumber[i] = int(current[current.find(pt)+1:current.find(pt)+3])
-            current = current[current.find(pt)+4:]
-            if i != 0:
-                xstorage[i] += xstorage[i-1]+4
-        return xstorage, xnumber
+    def eighteen_right(self):
+        ltg = self.LtG()
+        for i in range(self.N):
+            ltg[i][i] = expand(self.X[i] - ltg[i][i])
+        ltg = Matrix(ltg)
+        current = self.cdet(ltg)
+        for a in range(self.K):
+            current = (1 - self.Q[a]*self.edx)*current
+        left = expand(current)
+        return left
 
-
-    @staticmethod
-    def edxstor(foo):
-        global edxstorage, edxnumber
-        current = str(foo)
-        edxstorage = []
-        pattern = r'edx'
-        i = -1
-        while current.find(pattern) != -1:
-            i += 1
-            edxstorage.append(0)
-            edxstorage[i] = current.find(pattern)
-            current = current[current.find(pattern)+4:]
-            if i!= 0:
-                edxstorage[i] += edxstorage[i-1]+4
-        return  edxstorage
-
-
-    @staticmethod
-    def eestor(foo):
-        global eestorage, eenumber
-        current = str(foo)
-        eestorage = []
-        eenumber = []
-        regex = re.compile('[e][e]\d{1}')
-        pattern = regex.findall(current)
-        for i in range(len(pattern)):
-            pt = pattern[i]
-            eestorage.append(0)
-            eenumber.append(0)
-            eestorage[i] = current.find(pt)
-            eenumber[i] = int(current[current.find(pt)+2:current.find(pt)+3])
-            current = current[current.find(pt)+4:]
-            if i != 0:
-                eestorage[i] += eestorage[i-1]+4
-        return eestorage, eenumber
-
-
-    @staticmethod
-    def astor(foo):
-        global astorage, anumber
-        current = str(foo)
-        astorage = []
-        anumber = []
-        regex = re.compile('[a]\d{2}')
-        pattern = regex.findall(current)
-        for i in range(len(pattern)):
-            pt = pattern[i]
-            astorage.append(0)
-            anumber.append(0)
-            astorage[i] = current.find(pt)
-            anumber[i] = int(current[current.find(pt)+1:current.find(pt)+3])
-            current = current[current.find(pt)+4:]
-            if i != 0:
-                astorage[i] += astorage[i-1]+4
-        return astorage, anumber
-
-
-    @staticmethod
-    def bstor(foo):
-        global bstorage, bnumber
-        current = str(foo)
-        bstorage = []
-        bnumber = []
-        regex = re.compile('[b]\d{2}')
-        pattern = regex.findall(current)
-        for i in range(len(pattern)):
-            pt = pattern[i]
-            bstorage.append(0)
-            bnumber.append(0)
-            bstorage[i] = current.find(pt)
-            bnumber[i] = int(current[current.find(pt)+1:current.find(pt)+3])
-            current = current[current.find(pt)+4:]
-            if i != 0:
-                bstorage[i] += bstorage[i-1]+4
-        return bstorage, bnumber
-
-
-    @staticmethod
-    def xx0stor(foo):
-        global xx0storage, xx0number
-        current = str(foo)
-        xx0storage = []
-        xx0number = []
-        regex = re.compile('[x][x]\d{1}')
-        pattern = regex.findall(current)
-        for i in range(len(pattern)):
-            pt = pattern[i]
-            xx0storage.append(0)
-            xx0number.append(0)
-            xx0storage[i] = current.find(pt)
-            xx0number[i] = int(current[current.find(pt)+2:current.find(pt)+3])
-            current = current[current.find(pt)+4:]
-            if i != 0:
-                xx0storage[i] += xx0storage[i-1]+4
-        return xx0storage, xx0number
-
-
-    @staticmethod
-    def xstor(foo):
-        global xstorage, xnumber
-        current = str(foo)
-        xstorage = []
-        xnumber = []
-        regex = re.compile('[x]\d{2}')
-        pattern = regex.findall(current)
-        for i in range(len(pattern)):
-            pt = pattern[i]
-            xstorage.append(0)
-            xnumber.append(0)
-            xstorage[i] = current.find(pt)
-            xnumber[i] = int(current[current.find(pt)+1:current.find(pt)+3])
-            current = current[current.find(pt)+4:]
-            if i != 0:
-                xstorage[i] += xstorage[i-1]+4
-        return xstorage, xnumber
+    def eighteen_left(self):
+        ltg = self.LtG()
+        for i in range(self.N):
+            ltg[i][i] = expand(self.X[i] - ltg[i][i])
+        ltg = Matrix(ltg)
+        current = self.tilda_cdet(ltg)
+        for a in range(self.K):
+            current = (1 - self.Q[a]*self.edx)*current
+        left = expand(current)
+        return left
 
 
     @staticmethod
     def is_normalxx0(foo):
         flag = True
-        bstorage = XXX.bstor(foo)[0]
-        astorage = XXX.astor(foo)[0]
-        pustorage = XXX.edxstor(foo)
-        eestorage = XXX.eestor(foo)[0]
-        uzstorage = XXX.xx0stor(foo)[0]
-        xstorage = XXX.xstor(foo)[0]
-        # template x11*xx0*b11*a11*edx*ee1
+        bstorage = bcls.stor(foo)[0]
+        astorage = acls.stor(foo)[0]
+        pustorage = edxcls.stor(foo)
+        eestorage = eecls.stor(foo)[0]
+        uzstorage = xx0cls.stor(foo)[0]
+        xstorage = xcls.stor( foo)[0]
+        wstorage = wcls.stor(foo)[0]
+        qstorage = qcls.stor(foo)[0]
+        # template q11*w11*x11*xx0*b11*a11*edx*ee1
+        for q in qstorage:
+            for x in xstorage:
+                if x<q: flag = False
+            for a in astorage:
+                if a<q: flag = False
+            for xx0 in uzstorage:
+                if xx0<q: flag = False
+            for edx in pustorage:
+                if edx<q: flag = False
+            for ee in eestorage:
+                if ee<q: flag = False
+            for b in bstorage:
+                if b<q: flag = False
+            for w in wstorage:
+                if w<q: flag = False
+
+        for w in wstorage:
+            for x in xstorage:
+                if x<w: flag = False
+            for a in astorage:
+                if a<w: flag = False
+            for xx0 in uzstorage:
+                if xx0<w: flag = False
+            for edx in pustorage:
+                if edx<w: flag = False
+            for ee in eestorage:
+                if ee<w: flag = False
+            for b in bstorage:
+                if b<w: flag = False
+
         for x in xstorage:
             for a in astorage:
                 if a<x: flag = False
@@ -1285,25 +1394,339 @@ class XXX(NC):
             for ee in eestorage:
                 if ee<edx: flag = False
 
-
         return flag
+
 
     @staticmethod
     def is_normalorderxx0(foo):
         flag = True
-        xstorage = XXX.bstor(foo)[0]
-        pstorage = XXX.astor(foo)[0]
-        xnumber = XXX.bstor(foo)[1]
-        pnumber = XXX.astor(foo)[1]
-        uzstorage = XXX.xx0stor(foo)[0]
-        uznumber = XXX.xx0stor(foo)[1]
+        xnumber = xcls.stor(foo)[1]
+        bnumber = bcls.stor(foo)[1]
+        anumber = acls.stor(foo)[1]
+        uznumber = xx0cls.stor(foo)[1]
+        eenumber = eecls.stor(foo)[1]
+        wnumber = wcls.stor(foo)[1]
+        qnumber = qcls.stor(foo)[1]
         if uznumber != sorted(uznumber):
             return False
-        if pnumber != sorted(pnumber):
+        if anumber != sorted(anumber):
             return False
         if xnumber != sorted(xnumber):
             return False
+        if bnumber != sorted(bnumber):
+            return False
+        if eenumber != sorted(eenumber):
+            return False
+        if wnumber != sorted(wnumber):
+            return False
+        if qnumber != sorted(qnumber):
+            return False
         return XXX.is_normalxx0(foo)
+
+
+    @staticmethod
+    def abc(current, ans, only, notedx = True):
+        onlystor = only.stor(current)
+        onlyname = only().name
+        oonlystor = ''
+        oonlycurrent = ''
+        if notedx:
+            if onlystor[0] != []:
+                onlysort = sorted(onlystor[1])
+                onlycurrent = current[onlystor[0][0]:onlystor[0][-1]+3]
+                for i in range(len(onlysort)):
+                    oonlycurrent += onlycurrent[:onlycurrent.find(onlyname)+4].replace(str(onlystor[1][i]), str(onlysort[i]))
+                    onlycurrent = onlycurrent[onlycurrent.find(onlyname)+4:]
+                ans += oonlycurrent + '*'
+        else:
+            if onlystor != []:
+                onlycurrent = current[onlystor[0]:onlystor[-1]+3]
+                ans += onlycurrent + '*'
+
+        return ans
+
+
+    @staticmethod
+    def commutators(current, left, right, leftnumber, rightnumber, obv = False):
+
+        leftname = left().name
+        rightname = right().name
+        sign = '+'
+        if left == acls and right == bcls:
+            if obv:
+                sspar = '1-'
+            else:
+                sspar = ''
+                sign = '-'
+        if left == edxcls and right == xx0cls:
+            sspar = rightname + str(rightnumber) + '*' + rightname + str(rightnumber+1) + '*' + leftname
+        if left == eecls and right == xcls:
+            sspar = 'edx' + '*' + leftname + str(leftnumber) + '*' + leftname + str(leftnumber)
+        return sspar, sign
+
+
+    @staticmethod
+    def commute(current, result, left, right, index, lnumber = True, rnumber = True):
+        # left*right -> right*left
+        if lnumber:
+            leftnumber = left.stor(current)[1]
+            leftitem = left.stor(current)[0]
+        else:
+            leftitem = left.stor(current)
+            leftnumber = ['' for _ in leftitem]
+        if rnumber:
+            rightnumber = right.stor(current)[1]
+            rightitem = right.stor(current)[0]
+        else:
+            rightitem = right.stor(current)
+            rightnumber = ['' for _ in rightitem]
+
+        leftname = left.name
+        rightname = right.name
+        for i in range(len(rightitem)):
+            for j in range(len(leftitem)):
+                if leftitem[j]+4 == rightitem[i]:
+                    temp = current[leftitem[j]:leftitem[j]+7].replace(str(leftname)+ str(leftnumber[j]) + '*' + str(rightname)
+                        + str(rightnumber[i]), str(rightname) + str(rightnumber[i])+'*'+str(leftname)+str(leftnumber[j]),1)
+                    temp = current[:leftitem[j]] + temp + current[leftitem[j]+7:]
+                    result.remove(current)
+                    result.insert(index,temp)
+                    current = temp
+        return current, result
+
+    def cheat(current, result, left, right, index, signstorage):
+        # edx x -> x edx - ee + q edx ee
+        rightnumber = right.stor(current)[1]
+        rightitem = right.stor(current)[0]
+        leftitem = left.stor(current)
+        leftnumber = ['' for _ in rightitem]
+        leftname = left().name
+        rightname = right().name
+
+        for ii in range(len(rightitem)):
+            for jj in range(len(leftitem)):
+                if current.rstrip('-') == leftname+'*'+rightname+str(rightnumber[ii]):
+                    if current.find('-') != -1:
+                        signstorage = current[current.find('-'):]
+                        current = current.rstrip('-')
+
+                    sspar = []
+                    sspar.append( eecls().name + str(rightnumber[jj])[0] )
+                    sspar.append( qcls().name + str(rightnumber[jj]) + '*' + leftname +'*' + eecls().name + str(rightnumber[jj])[0] )
+                    temp = current.replace(leftname +'*'+rightname+str(rightnumber[ii]),
+                    rightname+str(rightnumber[ii])+'*'+leftname+str(leftnumber[jj]))
+
+                    current += signstorage
+                    temp += signstorage
+                    for ss in sspar:
+                        ss += signstorage
+
+                    result.remove(current)
+                    result.insert(index,temp)
+                    current = temp
+                    for ss in sspar:
+                        result.append(ss)
+
+                else:
+                    if jj != len(leftitem)-1:
+                        if leftitem[jj]+4 == rightitem[ii]  and leftitem[jj+1] > rightitem[ii]:
+                            if current.find('-') != -1:
+                                signstorage = current[current.find('-'):]
+                                current = current.rstrip('-')
+
+                            sspar = []
+                            ss = eecls().name + str(rightnumber[jj])[0]
+                            sspar.append(current[:leftitem[jj]] + ss + current[leftitem[jj]+7:])
+                            ss = qcls().name + str(rightnumber[ii]) + '*' + leftname + '*' + eecls().name + str(rightnumber[ii])[0]
+                            sspar.append(current[:leftitem[jj]] + ss + current[leftitem[jj]+7:])
+
+                            temp = current[leftitem[jj]:leftitem[jj]+7].replace(leftname+'*'+rightname+
+                                str(rightnumber[ii]), rightname+str(rightnumber[ii])+'*'+leftname,1)
+                            temp = current[:leftitem[jj]] + temp + current[leftitem[jj]+7:]
+
+
+                            current += signstorage
+                            temp += signstorage
+
+                            result.remove(current)
+                            result.insert(index,temp)
+                            current = temp
+
+                            for ss in sspar:
+                                ss = ss.replace('**', '*')
+                                if ss[0] == '*':
+                                    ss = sspar[1:]
+                                elif ss[-1] == '*':
+                                    ss = ss[:-1]
+                                if ss != '':
+                                    ss += signstorage
+                                    result.append(ss)
+                    else:
+                        if leftitem[jj]+4 == rightitem[ii] :
+                            if current.find('-') != -1:
+                                signstorage = current[current.find('-'):]
+                                current = current.rstrip('-')
+
+                            sspar = []
+                            ss = eecls().name + str(rightnumber[ii])[0]
+                            sspar.append(current[:leftitem[jj]] + ss + current[leftitem[jj]+7:])
+                            ss = qcls().name + str(rightnumber[ii]) + '*' + leftname + '*'+ eecls().name + str(rightnumber[ii])[0]
+                            sspar.append(current[:leftitem[jj]] + ss + current[leftitem[jj]+7:] )
+
+
+                            temp = current[leftitem[jj]:leftitem[jj]+7].replace(leftname+'*'+rightname+
+                                str(rightnumber[ii]), rightname+str(rightnumber[ii])+'*'+leftname,1)
+                            temp = current[:leftitem[jj]] + temp + current[leftitem[jj]+7:]
+
+
+                            current += signstorage
+                            temp += signstorage
+
+                            result.remove(current)
+                            result.insert(index,temp)
+                            current = temp
+
+                            for ss in sspar:
+                                ss = ss.replace('**', '*')
+                                if ss[0] == '*':
+                                    ss = sspar[1:]
+                                elif ss[-1] == '*':
+                                    ss = ss[:-1]
+                                if ss != '':
+                                    ss += signstorage
+                                    result.append(ss)
+        return current, result
+
+
+
+
+    def wick(current, result, left, right, index, signstorage, lnumber = True, rnumber = True):
+        # left*right -> right*left + spar
+        if lnumber:
+            leftnumber = left.stor(current)[1]
+            leftitem = left.stor(current)[0]
+        else:
+            leftitem = left.stor(current)
+            leftnumber = ['' for _ in leftitem]
+        if rnumber:
+            rightnumber = right.stor(current)[1]
+            rightitem = right.stor(current)[0]
+        else:
+            rightitem = right.stor(current)
+            rightnumber = ['' for _ in rightitem]
+        leftname = left().name
+        rightname = right().name
+
+        for ii in range(len(rightitem)):
+            for jj in range(len(leftitem)):
+                commutators = XXX.commutators(current, left, right, leftnumber[jj], rightnumber[ii])[0]
+                sign = XXX.commutators(current, left, right, leftnumber[jj], rightnumber[ii])[1]
+                if current.rstrip('-') == leftname+str(leftnumber[jj])+'*'+rightname+str(rightnumber[ii]):
+                    if current.find('-') != -1:
+                        signstorage = current[current.find('-'):]
+                        current = current.rstrip('-')
+
+                    sspar = XXX.commutators(current, left, right, leftnumber[jj], rightnumber[ii], True)[0]
+                    temp = current.replace(leftname+str(leftnumber[jj])+'*'+rightname+str(rightnumber[ii]),
+                    rightname+str(rightnumber[ii])+'*'+leftname+str(leftnumber[jj]))
+
+                    current += signstorage
+                    temp += signstorage
+                    sspar += signstorage
+
+                    result.remove(current)
+                    result.insert(index,temp)
+                    current = temp
+                    result.append(sspar)
+
+                else:
+                    if jj != len(leftitem)-1:
+                        if leftitem[jj]+4 == rightitem[ii]  and leftitem[jj+1] > rightitem[ii]:
+                            if current.find('-') != -1:
+                                signstorage = current[current.find('-'):]
+                                current = current.rstrip('-')
+                            if leftnumber[jj] != rightnumber[ii] and lnumber:
+
+                                temp = current[leftitem[jj]:leftitem[jj]+7].replace(leftname+str(leftnumber[jj])+'*'+rightname+
+                                    str(rightnumber[ii]), rightname+str(rightnumber[ii])+'*'+rightname+str(rightnumber[jj]),1)
+                                temp = current[:leftitem[jj]] + temp + current[leftitem[jj]+7:]
+
+                                current += signstorage
+                                temp += signstorage
+                                result.remove(current)
+                                result.insert(index,temp)
+                                current = temp
+                            else:
+
+                                sspar = current[leftitem[jj]:leftitem[jj]+7].replace(leftname+str(leftnumber[jj])+'*'+rightname+
+                                    str(rightnumber[ii]), commutators,1)
+                                sspar = current[:leftitem[jj]] + sspar + current[leftitem[jj]+7:]
+
+                                temp = current[leftitem[jj]:leftitem[jj]+7].replace(leftname+str(leftnumber[jj])+'*'+rightname+
+                                    str(rightnumber[ii]), rightname+str(rightnumber[ii])+'*'+leftname+str(leftnumber[jj]),1)
+                                temp = current[:leftitem[jj]] + temp + current[leftitem[jj]+7:]
+
+
+                                current += signstorage
+                                temp += signstorage
+
+                                result.remove(current)
+                                result.insert(index,temp)
+                                current = temp
+                                sspar = sspar.replace('**', '*')
+                                if sspar[0] == '*':
+                                    sspar = sspar[1:]
+                                elif sspar[-1] == '*':
+                                    sspar = sspar[:-1]
+                                if sspar != '':
+                                    if sign == '-':
+                                        sspar += '-'
+                                    sspar += signstorage
+                                    result.append(sspar)
+                    else:
+                        if leftitem[jj]+4 == rightitem[ii] :
+                            if current.find('-') != -1:
+                                signstorage = current[current.find('-'):]
+                                current = current.rstrip('-')
+                            if leftnumber[jj] != rightnumber[ii] and lnumber:
+
+                                temp = current[leftitem[jj]:leftitem[jj]+7].replace(leftname+str(leftnumber[jj])+'*'+rightname+
+                                    str(rightnumber[ii]), rightname+str(rightnumber[ii])+'*'+leftname+str(leftnumber[jj]))
+                                temp = current[:leftitem[jj]] + temp + current[leftitem[jj]+7:]
+
+                                current += signstorage
+                                temp += signstorage
+
+                                result.remove(current)
+                                result.insert(index,temp)
+                                current = temp
+                            else:
+
+                                sspar = current[leftitem[jj]:leftitem[jj]+7].replace(leftname+str(leftnumber[jj])+'*'+rightname+
+                                    str(rightnumber[ii]), commutators,1)
+                                sspar = current[:leftitem[jj]] + sspar + current[leftitem[jj]+7:]
+
+                                temp = current[leftitem[jj]:leftitem[jj]+7].replace(leftname+str(leftnumber[jj])+'*'+rightname+
+                                    str(rightnumber[ii]), rightname +str(rightnumber[ii])+'*'+leftname+str(leftnumber[jj]))
+                                temp = current[:leftitem[jj]] + temp + current[leftitem[jj]+7:]
+
+                                current += signstorage
+                                temp += signstorage
+
+                                result.remove(current)
+                                result.insert(index,temp)
+                                current = temp
+                                sspar = sspar.replace('**', '*')
+                                if sspar[0] == '*':
+                                    sspar = sspar[1:]
+                                elif sspar[-1] == '*':
+                                    sspar = sspar[:-1]
+                                if sspar != '':
+                                    if sign == '-':
+                                        sspar += '-'
+                                    sspar += signstorage
+                                    result.append(sspar)
+        return current, result
 
 
     @staticmethod
@@ -1317,268 +1740,107 @@ class XXX(NC):
         current = result[index]
         while not XXX.is_normalxx0(current):
             print(result)
-            xx0stor = XXX.xx0stor(current)[0]
-            ppustor = XXX.edxstor(current)
-            xx0number = XXX.xx0stor(current)[1]
-            eestor = XXX.eestor(current)[0]
-            eenumber = XXX.eestor(current)[1]
-            xstor = XXX.xstor(current)[0]
-            xnumber = XXX.xstor(current)[1]
-            sspar = ''
             signstorage = ''
 
-            for i in range(len(xstor)):
-                for j in range(len(eestor)):
-                    if current.rstrip('-') == 'ee'+str(eenumber[j])+'*'+'x'+ str(xnumber[i]):
-                        if current.find('-') != -1:
-                            signstorage = current[current.find('-'):]
-                            current = current.rstrip('-')
-                        sspar = 'edx'+ '*' + 'ee'+str(eenumber[j])+'*'+'ee'+str(eenumber[j])
-                        temp = current.replace('ee'+str(eenumber[j])+'*'+'x'+ str(xnumber[i]), 'x'+str(xnumber[i]) +'*'+'ee'+str(eenumber[j]),1)
-                        current += signstorage
-                        temp += signstorage
-                        sspar += signstorage
-                        result.remove(current)
-                        result.insert(index,temp)
-                        current = temp
-                        result.append(sspar)
-                    else:
-                        if j != len(eestor)-1:
-                            # if current.find('-') != -1:
-                            #     signstorage = current[current.find('-'):]
-                            #     current = current.rstrip('-')
-                            if eestor[j]+4 == xstor[i]  and eestor[j+1] > xstor[i]:
+            # WICK
 
-                                sspar = current[eestor[j]:eestor[j]+7].replace('ee'+str(eenumber[j])+'*'+'x'+str(xnumber[i]), 'edx'+ '*' + 'ee'+str(eenumber[j])+'*'+'ee'+str(eenumber[j]) ,1)
-                                sspar = current[:eestor[j]] + sspar + current[eestor[j]+7:]
+            # ee x
+            noncomm = XXX.wick(current, result, eecls, xcls, index, signstorage)
+            current, result = noncomm[0], noncomm[1]
 
-                                temp = current[eestor[j]:eestor[j]+7].replace('ee'+str(eenumber[j])+'*'+'x'+str(xnumber[i]), 'x'+str(xnumber[i])+'*'+'ee'+str(eenumber[j]),1)
-                                temp = current[:eestor[j]] + temp + current[eestor[j]+7:]
+            # edx x
+            noncomm = XXX.cheat(current, result, edxcls, xcls, index, signstorage)
+            current, result = noncomm[0], noncomm[1]
 
-                                result.remove(current)
-                                result.insert(index,temp)
-                                sspar = sspar.replace('**', '*')
-                                if sspar[0] == '*':
-                                    sspar = sspar[1:]
-                                elif sspar[-1] == '*':
-                                    sspar = sspar[:-1]
-                                if sspar != '':
-                                    result.append(sspar)
-                                current = temp
+            # edx xx0
+            noncomm = XXX.wick(current, result, edxcls, xx0cls, index, signstorage, False)
+            current, result = noncomm[0], noncomm[1]
 
-                        else:
-                            if eestor[j]+4 == xstor[i]:
+            # a b
+            noncomm = XXX.wick(current, result, acls, bcls, index, signstorage)
+            current, result = noncomm[0], noncomm[1]
+            print(result)
+            # COMMUTATORS
 
-                                sspar = current[eestor[j]:eestor[j]+7].replace('ee'+str(eenumber[j])+'*'+'x'+str(xnumber[i]), 'edx'+ '*' + 'ee'+str(eenumber[j])+'*'+'ee'+str(eenumber[j]) ,1)
-                                sspar = current[:eestor[j]] + sspar + current[eestor[j]+7:]
+            # q
+            comm = XXX.commute(current, result, wcls(), qcls(), index)
+            current, result = comm[0], comm[1]
 
-                                temp = current[eestor[j]:eestor[j]+7].replace('ee'+str(eenumber[j])+'*'+'x'+str(xnumber[i]), 'x'+str(xnumber[i])+'*'+'ee'+str(eenumber[j]),1)
-                                temp = current[:eestor[j]] + temp + current[eestor[j]+7:]
+            comm = XXX.commute(current, result, xcls(), qcls(), index)
+            current, result = comm[0], comm[1]
 
-                                result.remove(current)
-                                result.insert(index,temp)
-                                sspar = sspar.replace('**', '*')
-                                if sspar[0] == '*':
-                                    sspar = sspar[1:]
-                                elif sspar[-1] == '*':
-                                    sspar = sspar[:-1]
-                                if sspar != '':
-                                    result.append(sspar)
-                                current = temp
+            comm = XXX.commute(current, result, xx0cls(), qcls(), index)
+            current, result = comm[0], comm[1]
+
+            comm = XXX.commute(current, result, bcls(), qcls(), index)
+            current, result = comm[0], comm[1]
+
+            comm = XXX.commute(current, result, acls(), qcls(), index)
+            current, result = comm[0], comm[1]
+
+            comm = XXX.commute(current, result, edxcls(), qcls(), index, False)
+            current, result = comm[0], comm[1]
+
+            comm = XXX.commute(current, result, eecls(), qcls(), index)
+            current, result = comm[0], comm[1]
 
 
-            for i in range(len(xx0stor)):
-                for j in range(len(ppustor)):
-                    if current.rstrip('-') == 'edx'+'*'+'xx'+ str(xx0number[i]):
-                        if current.find('-') != -1:
-                            signstorage = current[current.find('-'):]
-                            current = current.rstrip('-')
-                        sspar = 'xx' + str(xx0number[i]+1)
-                        temp = current.replace('edx' + '*'+'xx'+ str(xx0number[i]), 'xx'+str(xx0number[i]) +'*'+'edx')
-                        current += signstorage
-                        temp += signstorage
-                        sspar += signstorage
-                        result.remove(current)
-                        result.insert(index,temp)
-                        current = temp
-                        result.append(sspar)
-                    else:
-                        if j != len(ppustor)-1:
-                            # if current.find('-') != -1:
-                            #     signstorage = current[current.find('-'):]
-                            #     current = current.rstrip('-')
-                            if ppustor[j]+4 == xx0stor[i]  and ppustor[j+1] > xx0stor[i]:
+            # w
+            comm = XXX.commute(current, result, xcls(), wcls(), index)
+            current, result = comm[0], comm[1]
 
-                                sspar = current[ppustor[j]:ppustor[j]+7].replace('edx'+'*'+'xx'+str(xx0number[i]), 'xx' + str(xx0number[i]+1) ,1)
-                                sspar = current[:ppustor[j]] + sspar + current[ppustor[j]+7:]
+            comm = XXX.commute(current, result, xx0cls(), wcls(), index)
+            current, result = comm[0], comm[1]
 
-                                temp = current[ppustor[j]:ppustor[j]+7].replace('edx'+'*'+'xx'+str(xx0number[i]), 'xx'+str(xx0number[i])+'*'+'edx',1)
-                                temp = current[:ppustor[j]] + temp + current[ppustor[j]+7:]
+            comm = XXX.commute(current, result, bcls(), wcls(), index)
+            current, result = comm[0], comm[1]
 
-                                result.remove(current)
-                                result.insert(index,temp)
-                                sspar = sspar.replace('**', '*')
-                                if sspar[0] == '*':
-                                    sspar = sspar[1:]
-                                elif sspar[-1] == '*':
-                                    sspar = sspar[:-1]
-                                if sspar != '':
-                                    result.append(sspar)
-                                current = temp
+            comm = XXX.commute(current, result, acls(), wcls(), index)
+            current, result = comm[0], comm[1]
 
-                        else:
-                            if ppustor[j]+4 == xx0stor[i]:
-                                sspar = current[ppustor[j]:ppustor[j]+7].replace('edx'+'*'+'xx'+str(xx0number[i]), 'xx' + str(xx0number[i]+1) ,1)
-                                sspar = current[:ppustor[j]] + sspar + current[ppustor[j]+7:]
+            comm = XXX.commute(current, result, edxcls(), wcls(), index, False)
+            current, result = comm[0], comm[1]
 
-                                temp = current[ppustor[j]:ppustor[j]+7].replace('edx'+'*'+'xx'+str(xx0number[i]), 'xx'+str(xx0number[i])+'*'+'edx',1)
-                                temp = current[:ppustor[j]] + temp + current[ppustor[j]+7:]
-                                result.remove(current)
-                                result.insert(index,temp)
-                                sspar = sspar.replace('**', '*')
-                                if sspar[0] == '*':
-                                    sspar = sspar[1:]
-                                elif sspar[-1] == '*':
-                                    sspar = sspar[:-1]
-                                if sspar != '':
-                                    result.append(sspar)
-                                current = temp
+            comm = XXX.commute(current, result, eecls(), wcls(), index)
+            current, result = comm[0], comm[1]
 
-            bbstor = XXX.bstor(current)
-            aastor = XXX.astor(current)
-            spar = ''
-            for ii in range(len(bbstor[0])):
-                for jj in range(len(aastor[0])):
+            # x
+            comm = XXX.commute(current, result, xx0cls(), xcls(), index)
+            current, result = comm[0], comm[1]
 
-                    if current.rstrip('-') == 'a'+str(aastor[1][jj])+'*'+'b'+str(bbstor[1][ii]):
-                        if current.find('-') != -1:
-                            signstorage = current[current.find('-'):]
-                            current = current.rstrip('-')
-                        sspar = '1'
-                        sspar += '-'
-                        temp = current.replace('a'+str(aastor[1][jj])+'*'+'b'+str(bbstor[1][ii]), 'b'+str(bbstor[1][ii])+'*'+'a'+str(aastor[1][jj]))
+            comm = XXX.commute(current, result, bcls(), xcls(), index)
+            current, result = comm[0], comm[1]
 
-                        current += signstorage
-                        temp += signstorage
-                        sspar += signstorage
+            comm = XXX.commute(current, result, acls(), xcls(), index)
+            current, result = comm[0], comm[1]
 
-                        result.remove(current)
-                        result.insert(index,temp)
-                        current = temp
-                        result.append(sspar)
+            comm = XXX.commute(current, result, acls(), xcls(), index)
+            current, result = comm[0], comm[1]
 
-                    else:
-                        if jj != len(aastor[0])-1:
-                            if aastor[0][jj]+4 == bbstor[0][ii]  and aastor[0][jj+1] > bbstor[0][ii]:
-                                if current.find('-') != -1:
-                                    signstorage = current[current.find('-'):]
-                                    current = current.rstrip('-')
-                                if aastor[1][jj] != bbstor[1][ii]:
+            # xx0
+            comm = XXX.commute(current, result, bcls(), xx0cls(), index)
+            current, result = comm[0], comm[1]
 
-                                    temp = current[aastor[0][jj]:aastor[0][jj]+7].replace('a'+str(aastor[1][jj])+'*'+'b'+str(bbstor[1][ii]), 'b'+str(bbstor[1][ii])+'*'+'a'+str(aastor[1][jj]),1)
-                                    temp = current[:aastor[0][jj]] + temp + current[aastor[0][jj]+7:]
+            comm = XXX.commute(current, result, acls(), xx0cls(), index)
+            current, result = comm[0], comm[1]
 
-                                    current += signstorage
-                                    temp += signstorage
-                                    result.remove(current)
-                                    result.insert(index,temp)
-                                    current = temp
-                                else:
+            # b
+            comm = XXX.commute(current, result, edxcls(), bcls(), index, False)
+            current, result = comm[0], comm[1]
 
-                                    sspar = current[aastor[0][jj]:aastor[0][jj]+7].replace('a'+str(aastor[1][jj])+'*'+'b'+str(bbstor[1][ii]), '',1)
-                                    sspar = current[:aastor[0][jj]] + sspar + current[aastor[0][jj]+7:]
+            comm = XXX.commute(current, result, eecls(), bcls(), index)
+            current, result = comm[0], comm[1]
 
-                                    temp = current[aastor[0][jj]:aastor[0][jj]+7].replace('a'+str(aastor[1][jj])+'*'+'b'+str(bbstor[1][ii]), 'b'+str(bbstor[1][ii])+'*'+'a'+str(aastor[1][jj]),1)
-                                    temp = current[:aastor[0][jj]] + temp + current[aastor[0][jj]+7:]
+            # a
+            comm = XXX.commute(current, result, edxcls(), acls(), index, False)
+            current, result = comm[0], comm[1]
 
+            comm = XXX.commute(current, result, eecls(), acls(), index)
+            current, result = comm[0], comm[1]
 
-                                    current += signstorage
-                                    temp += signstorage
-
-
-                                    result.remove(current)
-                                    result.insert(index,temp)
-                                    current = temp
-                                    sspar = sspar.replace('**', '*')
-                                    if sspar[0] == '*':
-                                        sspar = sspar[1:]
-                                    elif sspar[-1] == '*':
-                                        sspar = sspar[:-1]
-                                    if sspar != '':
-                                        sspar += '-'
-                                        sspar += signstorage
-                                        result.append(sspar)
-                        else:
-                            if aastor[0][jj]+4 == bbstor[0][ii] :
-                                if current.find('-') != -1:
-                                    signstorage = current[current.find('-'):]
-                                    current = current.rstrip('-')
-                                if aastor[1][jj] != bbstor[1][ii]:
-
-                                    temp = current[aastor[0][jj]:aastor[0][jj]+7].replace('a'+str(aastor[1][jj])+'*'+'b'+str(bbstor[1][ii]), 'b'+str(bbstor[1][ii])+'*'+'a'+str(aastor[1][jj]))
-                                    temp = current[:aastor[0][jj]] + temp + current[aastor[0][jj]+7:]
-
-                                    current += signstorage
-                                    temp += signstorage
-
-                                    result.remove(current)
-                                    result.insert(index,temp)
-                                    current = temp
-                                else:
-
-                                    sspar = current[aastor[0][jj]:aastor[0][jj]+7].replace('a'+str(aastor[1][jj])+'*'+'b'+str(bbstor[1][ii]), '',1)
-                                    sspar = current[:aastor[0][jj]] + sspar + current[aastor[0][jj]+7:]
-
-                                    temp = current.replace('a'+str(aastor[1][jj])+'*'+'b'+str(bbstor[1][ii]), 'b'+str(bbstor[1][ii])+'*'+'a'+str(aastor[1][jj]))
-                                    temp = current[:aastor[0][jj]] + temp + current[aastor[0][jj]+7:]
-                                    current += signstorage
-                                    temp += signstorage
-
-                                    result.remove(current)
-                                    result.insert(index,temp)
-                                    current = temp
-                                    sspar = sspar.replace('**', '*')
-                                    if sspar[0] == '*':
-                                        sspar = sspar[1:]
-                                    elif sspar[-1] == '*':
-                                        sspar = sspar[:-1]
-                                    if sspar != '':
-                                        sspar += '-'
-                                        sspar += signstorage
-                                        result.append(sspar)
-
-            for j in range(len(ppustor)):
-                for jj in range(len(bbstor[0])):
-                    if ppustor[j]+4 == bbstor[0][jj]:
-                        temp = current.replace('edx'+'*'+'b'+str(bbstor[1][jj]),'b'+str(bbstor[1][jj])+'*'+'edx' )
-                        result.remove(current)
-                        result.insert(index,temp)
-                        current = temp
-
-            for j in range(len(ppustor)):
-                for ii in range(len(aastor[0])):
-                    if ppustor[j]+4 == aastor[0][ii]:
-                        temp = current.replace( 'edx'+'*'+'a'+str(aastor[1][ii]),'a'+str(aastor[1][ii])+'*'+'edx')
-                        result.remove(current)
-                        result.insert(index,temp)
-                        current = temp
-
-
-            for i in range(len(xx0stor)):
-                for jj in range(len(bbstor[0])):
-                    if xx0stor[i] == bbstor[0][jj]+4:
-                        temp = current.replace('b'+str(bbstor[1][jj])+'*'+'xx' +str(xx0number[i]) , 'xx'+str(xx0number[i])+'*'+'b'+str(bbstor[1][jj]))
-                        result.remove(current)
-                        result.insert(index,temp)
-                        current = temp
-
-            for i in range(len(xx0stor)):
-                for ii in range(len(aastor[0])):
-                    if xx0stor[i] == aastor[0][ii]+4:
-                        temp = current.replace('a'+str(aastor[1][ii])+'*'+'xx'+str(xx0number[i]) , 'xx'+str(xx0number[i])+'*'+'a'+str(aastor[1][ii]))
-                        result.remove(current)
-                        result.insert(index,temp)
-                        current = temp
+            # ee
+            comm = XXX.commute(current, result, eecls(), edxcls(), index, True, False)
+            current, result = comm[0], comm[1]
 
         index += 1
         if index == len(result):
@@ -1608,50 +1870,23 @@ class XXX(NC):
                 return current + '-'
             else:
                 return current
+        # template q11*w11*x11*xx0*b11*a11*edx*ee1
+        ans = XXX.abc(current, ans, qcls)
+        ans = XXX.abc(current, ans, wcls)
+        ans = XXX.abc(current, ans, xcls)
+        ans = XXX.abc(current, ans, xx0cls)
+        ans = XXX.abc(current, ans, bcls)
+        ans = XXX.abc(current, ans, acls)
+        ans = XXX.abc(current, ans, edxcls, False)
+        ans = XXX.abc(current, ans, eecls)
 
-
-        xxstor = XXX.bstor(current)
-        ppstor = XXX.astor(current)
-        uzzstor = XXX.xx0stor(current)
-        puustor = XXX.edxstor(current)
-        xxcurrent = ''
-        ppcurrent = ''
-        uzzcurrent = ''
-        puucurrent = ''
-
-        if uzzstor[0] != []:
-            uzsort = sorted(uzzstor[1])
-            uzcurrent = current[uzzstor[0][0]:uzzstor[0][-1]+3]
-            for i in range(len(uzsort)):
-                uzzcurrent += uzcurrent[:uzcurrent.find(r'xx')+4].replace(str(uzzstor[1][i]), str(uzsort[i]))
-                uzcurrent = uzcurrent[uzcurrent.find(r'xx')+4:]
-            ans += uzzcurrent + '*'
-
-        if xxstor[0] != []:
-            xsort = sorted(xxstor[1])
-            xcurrent = current[xxstor[0][0]:xxstor[0][-1]+3]
-            for i in range(len(xsort)):
-                xxcurrent += xcurrent[:xcurrent.find(r'b')+4].replace(str(xxstor[1][i]), str(xsort[i]))
-                xcurrent = xcurrent[xcurrent.find(r'b')+4:]
-            ans += xxcurrent + '*'
-
-        if puustor != []:
-            pucurrent = current[puustor[0]:puustor[-1]+3]
-            ans += pucurrent + '*'
-
-        if ppstor[0] != []:
-            psort = sorted(ppstor[1])
-            pcurrent = current[ppstor[0][0]:ppstor[0][-1]+3]
-            for i in range(len(psort)):
-                ppcurrent += pcurrent[:pcurrent.find('a')+4].replace(str(ppstor[1][i]), str(psort[i]))
-                pcurrent = pcurrent[pcurrent.find('a')+4:]
-            ans += ppcurrent + '*'
 
         ans = ans.rstrip('*')
         current = ans
         if minus:
             ans += '-'
         return ans
+
 
     @staticmethod
     def FNF2(foo):
@@ -1669,7 +1904,7 @@ class XXX(NC):
         base= []
         for row in sym:
             wr += XXX.FNF2(self.decode_multiples(row))[1:]
-            base += XXX.FNF2(self.decode_multiples(row))[:1]
+            # base += XXX.FNF2(self.decode_multiples(row))[:1]
         plus = []
         minus = []
 
@@ -1678,18 +1913,18 @@ class XXX(NC):
                 minus.append( wr[i].rstrip('-'))
             else:
                 plus.append( wr[i])
-    #     ans = is_equal(plus,minus)
+        ans = XXX.is_equal(plus,minus)
         setp = set(plus)
         setm = set(minus)
         diff = list(setm-setp)+ list(setp-setm)
-        setb = set(base)
-        if setp != setm:
-            ans = False
-        return ans, len(plus), plus, len(minus),minus, diff
+        # setb = set(base)
+        # if setp != setm:
+            # ans = False
+        return ans, len(plus), plus, len(minus),minus
 
 
 if __name__ == '__main__' :
     test = XXX(2,2)
-    print(test.FNFab('ee1*x11'))
+    print(test.FNFab('ee1*ee3*ee2*x11*x33*x22'))
 
 
