@@ -925,7 +925,9 @@ class xcls():
     def __init__(self):
         self.name = 'x'
 
+
     @staticmethod
+    # # @njit
     def stor(foo):
         global xstorage, xnumber
         current = str(foo)
@@ -949,6 +951,7 @@ class xx0cls():
     def __init__(self):
         self.name = 'xx'
 
+    # # @njit
     @staticmethod
     def stor(foo):
         global xx0storage, xx0number
@@ -973,6 +976,7 @@ class bcls():
     def __init__(self):
         self.name = 'b'
 
+    # # @njit
     @staticmethod
     def stor(foo):
         global bstorage, bnumber
@@ -997,6 +1001,7 @@ class acls():
     def __init__(self):
         self.name = 'a'
 
+    # # @njit
     @staticmethod
     def stor(foo):
         global astorage, anumber
@@ -1021,6 +1026,7 @@ class edxcls():
     def __init__(self):
         self.name = 'edx'
 
+    # # @njit
     @staticmethod
     def stor(foo):
         global edxstorage, edxnumber
@@ -1042,6 +1048,7 @@ class eecls():
     def __init__(self):
         self.name = 'ee'
 
+    # # @njit
     @staticmethod
     def stor(foo):
         global eestorage, eenumber
@@ -1066,6 +1073,7 @@ class wcls():
     def __init__(self):
         self.name = 'w'
 
+    # # @njit
     @staticmethod
     def stor(foo):
         global wstorage, wnumber
@@ -1089,6 +1097,7 @@ class qcls():
     def __init__(self):
         self.name = 'q'
 
+    # # @njit
     @staticmethod
     def stor(foo):
         # global wstorage, wnumber
@@ -1158,11 +1167,12 @@ class XXX(NC):
         self.xx0 = xx0
         self.Q = Q
 
-
+    # @njit
     def sigma2(self):
         return list(permutations([x for x in range(1,self.N+1)]))
 
 
+    # @njit
     def Ematrix(self, N, a, b):
         Matr = [[0 for x in range(self.N)] for x in range(self.N)]
         for i in range(self.N):
@@ -1172,6 +1182,7 @@ class XXX(NC):
         return Matrix(Matr)
 
 
+    # @njit
     def LtG(self):
         L = [[0 for _ in range(self.N)] for _ in range(self.N)]
         for j in range(self.N):
@@ -1180,10 +1191,11 @@ class XXX(NC):
                 for a in range(self.K):
                     if i<j:
                         L[i][j] += self.A[i][a]*self.B[j][a]
-                    L[i][j] += Symbol('q'+str(a+1)+str(a+1), commutative = False)*self.A[i][a]*self.B[j][a]*Symbol( 'ee'+str(a+1), commutative = False)
+                    L[i][j] += self.A[i][a]*self.B[j][a]*Symbol( 'ee'+str(1), commutative = False)
         return L
 
 
+    # @njit
     def Lrat_true(self, foo, i):
         result = zeros(self.N, self.N)
         for b in range(self.N):
@@ -1194,6 +1206,7 @@ class XXX(NC):
         return result
 
 
+    # @njit
     def Lrat(self, foo, i):
         one = ones(self.N, self.N)*(1/(foo) * b_b*a_a)
         diag = eye(self.N, self.N)
@@ -1209,6 +1222,7 @@ class XXX(NC):
         return result
 
 
+    # @njit
     def qdet(self, foo):
         result = 0
         sigma = self.sigma()
@@ -1232,6 +1246,7 @@ class XXX(NC):
         return result
 
 
+    # @njit
     def j_delta(self, m):
         N = self.N
         JJ = []
@@ -1240,6 +1255,7 @@ class XXX(NC):
         return JJ
 
 
+    # @njit
     def delta_sum(self, x, sigm):
         counter = 0
         for j in range(x):
@@ -1248,6 +1264,7 @@ class XXX(NC):
         return counter
 
 
+    # @njit
     def tilda_cdet(self, foo):
         # sigma = [(0,1,2)]
         # sigma2 = [(1,2,3)]
@@ -1278,6 +1295,7 @@ class XXX(NC):
         return result
 
 
+    # @njit
     def TXXX(self):
         result = 1
         for i in range(self.K):
@@ -1285,10 +1303,12 @@ class XXX(NC):
         return result
 
 
+    # @njit
     def fifteen(self):
         return self.cdet(eye(self.N) - self.edx*self.TXXX())
 
 
+    # @njit
     def eighteen_right(self):
         ltg = self.LtG()
         for i in range(self.N):
@@ -1296,10 +1316,12 @@ class XXX(NC):
         ltg = Matrix(ltg)
         current = self.cdet(ltg)
         for a in range(self.K):
-            current = (1 - self.Q[a]*self.edx)*current
+            current = (1 - self.edx)*current
         left = expand(current)
         return left
 
+
+    # @njit
     def eighteen_left(self):
         ltg = self.LtG()
         for i in range(self.N):
@@ -1307,11 +1329,12 @@ class XXX(NC):
         ltg = Matrix(ltg)
         current = self.tilda_cdet(ltg)
         for a in range(self.K):
-            current = (1 - self.Q[a]*self.edx)*current
+            current = (1 - self.edx)*current
         left = expand(current)
-        return left
+        return ltg
 
 
+    # @njit
     @staticmethod
     def is_normalxx0(foo):
         flag = True
@@ -1397,6 +1420,7 @@ class XXX(NC):
         return flag
 
 
+    # @njit
     @staticmethod
     def is_normalorderxx0(foo):
         flag = True
@@ -1424,6 +1448,7 @@ class XXX(NC):
         return XXX.is_normalxx0(foo)
 
 
+    # @njit
     @staticmethod
     def abc(current, ans, only, notedx = True):
         onlystor = only.stor(current)
@@ -1446,6 +1471,7 @@ class XXX(NC):
         return ans
 
 
+    # @njit
     @staticmethod
     def commutators(current, left, right, leftnumber, rightnumber, obv = False):
 
@@ -1465,6 +1491,7 @@ class XXX(NC):
         return sspar, sign
 
 
+    # @njit
     @staticmethod
     def commute(current, result, left, right, index, lnumber = True, rnumber = True):
         # left*right -> right*left
@@ -1494,6 +1521,9 @@ class XXX(NC):
                     current = temp
         return current, result
 
+
+
+    # @njit
     def cheat(current, result, left, right, index, signstorage):
         # edx x -> x edx - ee + q edx ee
         rightnumber = right.stor(current)[1]
@@ -1511,8 +1541,8 @@ class XXX(NC):
                         current = current.rstrip('-')
 
                     sspar = []
-                    sspar.append( eecls().name + str(rightnumber[jj])[0] )
-                    sspar.append( qcls().name + str(rightnumber[jj]) + '*' + leftname +'*' + eecls().name + str(rightnumber[jj])[0] )
+                    sspar.append( eecls().name + str(1) )
+                    sspar.append( leftname +'*' + eecls().name + str(1) + '-')
                     temp = current.replace(leftname +'*'+rightname+str(rightnumber[ii]),
                     rightname+str(rightnumber[ii])+'*'+leftname+str(leftnumber[jj]))
 
@@ -1535,10 +1565,10 @@ class XXX(NC):
                                 current = current.rstrip('-')
 
                             sspar = []
-                            ss = eecls().name + str(rightnumber[jj])[0]
+                            ss = eecls().name + str(1)
                             sspar.append(current[:leftitem[jj]] + ss + current[leftitem[jj]+7:])
-                            ss = qcls().name + str(rightnumber[ii]) + '*' + leftname + '*' + eecls().name + str(rightnumber[ii])[0]
-                            sspar.append(current[:leftitem[jj]] + ss + current[leftitem[jj]+7:])
+                            ss = leftname + '*' + eecls().name + str(1)
+                            sspar.append(current[:leftitem[jj]] + ss + current[leftitem[jj]+7:] + '-')
 
                             temp = current[leftitem[jj]:leftitem[jj]+7].replace(leftname+'*'+rightname+
                                 str(rightnumber[ii]), rightname+str(rightnumber[ii])+'*'+leftname,1)
@@ -1568,10 +1598,10 @@ class XXX(NC):
                                 current = current.rstrip('-')
 
                             sspar = []
-                            ss = eecls().name + str(rightnumber[ii])[0]
+                            ss = eecls().name + str(1)
                             sspar.append(current[:leftitem[jj]] + ss + current[leftitem[jj]+7:])
-                            ss = qcls().name + str(rightnumber[ii]) + '*' + leftname + '*'+ eecls().name + str(rightnumber[ii])[0]
-                            sspar.append(current[:leftitem[jj]] + ss + current[leftitem[jj]+7:] )
+                            ss = leftname + '*'+ eecls().name + str(1)
+                            sspar.append(current[:leftitem[jj]] + ss + current[leftitem[jj]+7:] + '-')
 
 
                             temp = current[leftitem[jj]:leftitem[jj]+7].replace(leftname+'*'+rightname+
@@ -1599,8 +1629,8 @@ class XXX(NC):
 
 
 
-
-    def wick(current, result, left, right, index, signstorage, lnumber = True, rnumber = True):
+    # @njit
+    def wick(current, result, left, right, index, signstorage, lnumber = True, ee = False):
         # left*right -> right*left + spar
         if lnumber:
             leftnumber = left.stor(current)[1]
@@ -1608,12 +1638,11 @@ class XXX(NC):
         else:
             leftitem = left.stor(current)
             leftnumber = ['' for _ in leftitem]
-        if rnumber:
-            rightnumber = right.stor(current)[1]
-            rightitem = right.stor(current)[0]
-        else:
-            rightitem = right.stor(current)
-            rightnumber = ['' for _ in rightitem]
+        rightnumber = right.stor(current)[1]
+        rightitem = right.stor(current)[0]
+        # else:
+        #     rightitem = right.stor(current)
+        #     rightnumber = ['' for _ in rightitem]
         leftname = left().name
         rightname = right().name
 
@@ -1645,7 +1674,7 @@ class XXX(NC):
                             if current.find('-') != -1:
                                 signstorage = current[current.find('-'):]
                                 current = current.rstrip('-')
-                            if leftnumber[jj] != rightnumber[ii] and lnumber:
+                            if leftnumber[jj] != rightnumber[ii] and lnumber and not ee :
 
                                 temp = current[leftitem[jj]:leftitem[jj]+7].replace(leftname+str(leftnumber[jj])+'*'+rightname+
                                     str(rightnumber[ii]), rightname+str(rightnumber[ii])+'*'+rightname+str(rightnumber[jj]),1)
@@ -1688,7 +1717,7 @@ class XXX(NC):
                             if current.find('-') != -1:
                                 signstorage = current[current.find('-'):]
                                 current = current.rstrip('-')
-                            if leftnumber[jj] != rightnumber[ii] and lnumber:
+                            if leftnumber[jj] != rightnumber[ii] and lnumber and not ee:
 
                                 temp = current[leftitem[jj]:leftitem[jj]+7].replace(leftname+str(leftnumber[jj])+'*'+rightname+
                                     str(rightnumber[ii]), rightname+str(rightnumber[ii])+'*'+leftname+str(leftnumber[jj]))
@@ -1728,24 +1757,29 @@ class XXX(NC):
                                     result.append(sspar)
         return current, result
 
-
+    # @njit
     @staticmethod
     def FNFab(foo, index = 0):
         result = []
-        if isinstance(foo, str):
+        # if isinstance(foo, str):
+        #     result.append(foo)
+        # elif isinstance(foo, list):
+        #     for item in foo:
+        #         result.append(item)
+        if len(foo[0]) == 1:
             result.append(foo)
-        elif isinstance(foo, list):
+        else:
             for item in foo:
                 result.append(item)
         current = result[index]
         while not XXX.is_normalxx0(current):
-            print(result)
+            # print(result)
             signstorage = ''
 
             # WICK
 
             # ee x
-            noncomm = XXX.wick(current, result, eecls, xcls, index, signstorage)
+            noncomm = XXX.wick(current, result, eecls, xcls, index, signstorage, True, True)
             current, result = noncomm[0], noncomm[1]
 
             # edx x
@@ -1759,7 +1793,7 @@ class XXX(NC):
             # a b
             noncomm = XXX.wick(current, result, acls, bcls, index, signstorage)
             current, result = noncomm[0], noncomm[1]
-            print(result)
+            # print(result)
             # COMMUTATORS
 
             # q
@@ -1856,7 +1890,7 @@ class XXX(NC):
             return answer
         return XXX.FNFab(result, index)
 
-
+    # @njit
     @staticmethod
     def FNFabc(foo):
         if foo[-1] == '-':
@@ -1887,7 +1921,7 @@ class XXX(NC):
             ans += '-'
         return ans
 
-
+    # @njit
     @staticmethod
     def FNF2(foo):
         result = []
@@ -1895,7 +1929,7 @@ class XXX(NC):
             result.append(XXX.FNFabc(item))
         return result
 
-
+    # @njit
     def answerab(self,foo):
         global plus, minus
         ans = True
